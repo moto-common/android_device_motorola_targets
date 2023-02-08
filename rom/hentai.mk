@@ -27,11 +27,11 @@ $(call inherit-product, vendor/hentai/build/product/hentai_product.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 
-# Device
-DEVICE := $(PRODUCT_DEVICE)
-
 # Kernel
-$(call inherit-product, device/motorola/targets/includes/kernel/prebuilt.mk)
+$(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 
 # Hentai Required Packages
 PRODUCT_PACKAGES += libtensorflowlite_jni
+
+# Hentai Official Rel Extras
+$(call inherit-product, vendor/hentai-priv/hentai-priv.mk)

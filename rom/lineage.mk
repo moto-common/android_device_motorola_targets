@@ -16,7 +16,7 @@
 DEVICE := $(LINEAGE_BUILD)
 
 # Kernel
-$(call inherit-product, device/motorola/targets/includes/kernel/source.mk)
+$(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # Libhidl
 PLATFORM_PROVIDES_LIBHIDL := true
