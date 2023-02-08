@@ -1,2 +1,2 @@
 PRODUCT_COPY_FILES += \
-    device/motorola/amogus-kernel/Image.gz:kernel
+    $(TARGET_DEVICE_DIR)-kernel/Image.gz:kernel
