@@ -20,6 +20,5 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 PRODUCT_DEVICE := amogus
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL := Moto G(8) Family
+PRODUCT_MODEL ?= Moto G(8) Family
 PRODUCT_SHIPPING_API_LEVEL := 29
-
