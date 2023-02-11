@@ -20,4 +20,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 PRODUCT_DEVICE := kasagi
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL ?= Motorola One Hyper
+PRODUCT_MODEL ?= motorola one hyper
