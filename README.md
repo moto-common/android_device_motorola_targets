@@ -13,6 +13,7 @@
 | [corfur](../../../../moto-common/android_device_motorola_corfur)           | Moto G71 5G                                                            | None | WIP     |
 | [guamna](../../../../moto-common/android_device_motorola_guamna)           | Moto G Play 2021/Moto G9/Moto G9 Play                                  | None | Stable  |
 | [hanoip](../../../../moto-common/android_device_motorola_hanoip)           | Moto G40 Fusion/Moto G60                                               | None | Dropped |
+| [kasagi](../../../../moto-common/android_device_motorola_kasagi)           | Motorola One Hyper                                                     | None | Stable  |
 | [milanf](../../../../moto-common/android_device_motorola_milanf)           | Moto G Stylus 2022 5G                                                  | None | WIP     |
 | [okinawa](../../../../moto-common/android_device_motorola_okinawa)         | Moto Z4                                                                | None | Stable  |
 | [osaka](../../../../moto-common/android_device_motorola_osaka)             | Moto G Stylus 2021 5G                                                  | None | Stable  |
