@@ -20,4 +20,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 PRODUCT_DEVICE := caprip
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL ?= moto g(30)
+PRODUCT_MODEL := moto g(30)

@@ -20,4 +20,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 PRODUCT_DEVICE := TEMPLATE
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL ?= TEMPLATE_MODEL
+PRODUCT_MODEL := TEMPLATE_MODEL
