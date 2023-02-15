@@ -34,4 +34,4 @@ $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 PRODUCT_PACKAGES += libtensorflowlite_jni
 
 # Hentai Official Rel Extras
-$(call inherit-product, vendor/hentai-priv/hentai-priv.mk)
+$(call inherit-product-if-exists, vendor/hentai-priv/hentai-priv.mk)
