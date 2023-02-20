@@ -18,8 +18,8 @@ MAINLINE_INCLUDE_BT_MODULE := false
 #MAINLINE_INCLUDE_WIFI_MODULE := false
 
 # Includes
-include device/motorola/targets/rom/hentai.mk
 include device/motorola/targets/devices/amogus/amogus.mk
+include device/motorola/targets/rom/hentai.mk
 
 # Device Model
 PRODUCT_MODEL := Moto G(8) Family (hOS)

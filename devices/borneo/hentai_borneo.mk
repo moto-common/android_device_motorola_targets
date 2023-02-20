@@ -17,8 +17,8 @@ MAINLINE_INCLUDE_ART_MODULE := false
 MAINLINE_INCLUDE_BT_MODULE := false
 
 # Includes
-include device/motorola/targets/rom/hentai.mk
 include device/motorola/targets/devices/borneo/borneo.mk
+include device/motorola/targets/rom/hentai.mk
 
 # Device Model
 PRODUCT_MODEL := moto g power 2021 (hOS)

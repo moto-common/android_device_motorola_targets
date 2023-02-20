@@ -17,9 +17,9 @@ MAINLINE_INCLUDE_ART_MODULE := false
 MAINLINE_INCLUDE_BT_MODULE := false
 
 # Includes
-include device/motorola/targets/devices/okinawa/okinawa.mk
+include device/motorola/targets/devices/hanoip/hanoip.mk
 include device/motorola/targets/rom/hentai.mk
 
 # Device Model
-PRODUCT_MODEL := moto z4 (hOS)
-PRODUCT_NAME := hentai_okinawa
+PRODUCT_MODEL := moto g60 (hOS)
+PRODUCT_NAME := hentai_hanoip
