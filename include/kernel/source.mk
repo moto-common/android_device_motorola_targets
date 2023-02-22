@@ -13,5 +13,6 @@
 # limitations under the License.
 
 TARGET_KERNEL_CLANG_VERSION := r383902
-TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
 TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
+TARGET_KERNEL_LLVM_BINUTILS := false
+TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
