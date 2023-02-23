@@ -12,5 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/Image.gz
+
 PRODUCT_COPY_FILES += \
-    $(TARGET_DEVICE_DIR)-kernel/Image.gz:kernel
+    $(TARGET_PREBUILT_KERNEL):kernel
