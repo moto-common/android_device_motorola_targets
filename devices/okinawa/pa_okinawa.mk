@@ -12,15 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit from those products. Most specific first.
-# Hardware
-$(call inherit-product, device/motorola/targets/include/qcom/common.mk)
+# Includes
+include device/motorola/targets/rom/aospa.mk
+include device/motorola/targets/devices/okinawa/okinawa.mk
 
-$(call inherit-product, device/motorola/corfur/device.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+# Device Model
+PRODUCT_MODEL := moto z4
 
-PRODUCT_DEVICE := corfur
-PRODUCT_BRAND := motorola
-PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL := moto g(71) 5g

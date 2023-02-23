@@ -13,6 +13,9 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
+# Hardware
+$(call inherit-product, device/motorola/targets/include/qcom/common.mk)
+
 $(call inherit-product, device/motorola/TEMPLATE/device.mk)
 TEMPLATE_DALVIK_HEAP_INCLUDE
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)

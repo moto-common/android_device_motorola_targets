@@ -13,6 +13,9 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
+# Hardware
+$(call inherit-product, device/motorola/targets/include/qcom/common.mk)
+
 $(call inherit-product, device/motorola/osaka/device.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)

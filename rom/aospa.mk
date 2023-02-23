@@ -13,14 +13,14 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
-# Hardware
-$(call inherit-product, device/motorola/targets/include/qcom/common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
-$(call inherit-product, device/motorola/corfur/device.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+# Inherit from the AOSPA configuration.
+$(call inherit-product, vendor/aospa/target/product/aospa-target.mk)
 
-PRODUCT_DEVICE := corfur
-PRODUCT_BRAND := motorola
-PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL := moto g(71) 5g
+# Kernel
+$(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
+
+# NoNearbySharingOverlay
+PRODUCT_PACKAGES += \
+    NoNearbySharingOverlay
