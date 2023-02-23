@@ -24,3 +24,10 @@ $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 # NoNearbySharingOverlay
 PRODUCT_PACKAGES += \
     NoNearbySharingOverlay
+
+# Avoid double inclusion
+ROM_INCLUDES_QCOM_COMMON := true
+
+# Bluetooth
+PRODUCT_SOONG_NAMESPACES += \
+    packages/modules/Bluetooth/android/app
