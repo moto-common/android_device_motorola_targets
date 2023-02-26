@@ -14,7 +14,7 @@
 
 # Inherit from those products. Most specific first.
 # Hardware
-$(call inherit-product, device/motorola/targets/include/qcom/common.mk)
+PRODUCT_USES_QCOM_HARDWARE := true
 
 $(call inherit-product, device/motorola/amogus/device.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
