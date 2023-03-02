@@ -12,7 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include device/motorola/targets/devices/amogus_doha/amogus_doha.mk
-include device/motorola/targets/rom/aosp.mk
-
-PRODUCT_NAME := aosp_amogus_doha
+# Kernel
+$(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)

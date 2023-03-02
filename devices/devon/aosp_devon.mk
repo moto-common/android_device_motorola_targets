@@ -13,5 +13,6 @@
 # limitations under the License.
 
 include device/motorola/targets/devices/devon/devon.mk
+include device/motorola/targets/rom/aosp.mk
 
 PRODUCT_NAME := aosp_devon
