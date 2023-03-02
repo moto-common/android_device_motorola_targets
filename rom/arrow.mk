@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common
+include device/motorola/targets/include/common.mk
+
 #
 # All components inherited here go to system image
 #
@@ -36,9 +39,6 @@ $(call inherit-product, vendor/arrow/config/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-# Device
-DEVICE := $(ARROW_BUILD)
 
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)

@@ -12,5 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common
+include device/motorola/targets/include/common.mk
+
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
