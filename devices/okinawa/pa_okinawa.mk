@@ -13,8 +13,8 @@
 # limitations under the License.
 
 # Includes
-include device/motorola/targets/rom/aospa.mk
 include device/motorola/targets/devices/okinawa/okinawa.mk
+include device/motorola/targets/rom/aospa.mk
 
 # Device Model
 PRODUCT_MODEL := moto z4

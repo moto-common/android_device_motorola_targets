@@ -13,5 +13,5 @@
 # limitations under the License.
 
 # Includes
-include device/motorola/targets/rom/aospa.mk
 include device/motorola/targets/devices/kasagi/kasagi.mk
+include device/motorola/targets/rom/aospa.mk

@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include device/motorola/targets/devices/amogus/amogus.mk
+
 # Inherit lineage specific configuration
 include device/motorola/targets/rom/lineage.mk
-
-include device/motorola/targets/devices/amogus/amogus.mk
 
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
