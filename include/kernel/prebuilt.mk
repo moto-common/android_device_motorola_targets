@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/Image.gz
+ifneq (,$(filter 5.4 5.10 5.15, $(TARGET_KERNEL_VERSION)))
+  TARGET_KERNEL_IMAGE_NAME := Image
+else
+  TARGET_KERNEL_IMAGE_NAME := Image.gz
+endif
+
+TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/$(TARGET_KERNEL_IMAGE_NAME)
 
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
