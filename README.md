@@ -17,3 +17,4 @@
 | [milanf](../../../../moto-common/android_device_motorola_milanf)           | Moto G Stylus 2022 5G                                                  | None | WIP     |
 | [okinawa](../../../../moto-common/android_device_motorola_okinawa)         | Moto Z4                                                                | None | Stable  |
 | [osaka](../../../../moto-common/android_device_motorola_osaka)             | Moto G Stylus 2021 5G                                                  | None | Stable  |
+| [parker](../../../../moto-common/android_device_motorola_parker)           | Motorola One Zoom                                                      | None | WIP     |
