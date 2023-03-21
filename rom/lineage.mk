@@ -15,6 +15,9 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 

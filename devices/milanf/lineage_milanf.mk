@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include device/motorola/targets/devices/amogus/amogus.mk
+include device/motorola/targets/devices/milanf/milanf.mk
 
 # Inherit lineage specific configuration
 include device/motorola/targets/rom/lineage.mk
 
-PRODUCT_NAME := lineage_amogus
+PRODUCT_NAME := lineage_milanf
