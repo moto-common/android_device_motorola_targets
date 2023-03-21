@@ -20,3 +20,6 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # Libhidl
 PLATFORM_PROVIDES_LIBHIDL := true
+
+# Required Scripts
+$(warning This ROM requires replace_camera_sepolicy.sh to be ran...)

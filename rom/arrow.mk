@@ -45,3 +45,5 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 ARROW_GAPPS := true
 
+# Required Scripts
+$(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
