@@ -28,7 +28,7 @@ root2 = tree2.getroot()
 paths2 = [project.get('path') for project in root2.findall('project')]
 
 # Define the list of keywords for replacements and removals
-replacements_keywords = ['qcom-caf/common']
+replacements_keywords = {'qcom-caf/common': "platform_hardware_qcom-caf_common"}
 removals_keywords = ['st-hal']
 
 # Create the new_root, manifest
@@ -54,11 +54,11 @@ for project in root1.findall('project'):
         for keyword in replacements_keywords:
             if keyword in path:
                 if path not in replacements:
-                    replacements[path] = {'name': name, 'linkfiles': linkfile_elems}
+                    replacements[path] = {'name': replacements_keywords[keyword], 'linkfiles': linkfile_elems}
                 else:
                     # Only replace with the shortest path match
                     if len(path) < len(replacements[path]['path']):
-                        replacements[path] = {'name': name, 'linkfiles': linkfile_elems}
+                        replacements[path] = {'name': replacements_keywords[keyword], 'linkfiles': linkfile_elems}
         for keyword in removals_keywords:
             if keyword in path:
                 remove = ET.Element('remove-project')
