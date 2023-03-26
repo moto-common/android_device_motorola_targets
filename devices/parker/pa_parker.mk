@@ -12,15 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit from those products. Most specific first.
-# Hardware
-PRODUCT_USES_QCOM_HARDWARE := true
-
-$(call inherit-product, device/motorola/parker/device.mk)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-PRODUCT_DEVICE := parker
-PRODUCT_BRAND := motorola
-PRODUCT_MANUFACTURER := motorola
-PRODUCT_MODEL := motorola one zoom
+# Includes
+include device/motorola/targets/devices/parker/parker.mk
+include device/motorola/targets/rom/aospa.mk

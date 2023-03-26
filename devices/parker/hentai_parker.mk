@@ -21,5 +21,5 @@ include device/motorola/targets/devices/parker/parker.mk
 include device/motorola/targets/rom/hentai.mk
 
 # Device Model
-PRODUCT_MODEL := motorola one hyper (hOS)
+PRODUCT_MODEL := motorola one zoom (hOS)
 PRODUCT_NAME := hentai_parker
