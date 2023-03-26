@@ -32,4 +32,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # VARIABLE - SePolicy Camera Script
-#$(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+$(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
