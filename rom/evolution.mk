@@ -15,6 +15,9 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
+
 # Inherit some common Evolution X stuff.
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
@@ -31,3 +34,6 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_DEVICE := $(DEVICE)
+PRODUCT_NAME := evolution_$(DEVICE)
