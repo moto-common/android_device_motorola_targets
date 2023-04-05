@@ -13,7 +13,19 @@
 # limitations under the License.
 
 # Device
-DEVICE := $(PRODUCT_DEVICE)
+DEVICE := $(subst _, ,$(TARGET_PRODUCT))
+ifeq ($(words $(DEVICE)), 2)
+  DEVICE := $(lastword $(subst _, ,$(TARGET_PRODUCT)))
+endif
+
+# Brand
+PRODUCT_BRAND := motorola
+
+# Manufacturer
+PRODUCT_MANUFACTURER := motorola
+
+# Required Inheritance
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Utils
 include device/motorola/targets/include/utils.mk
