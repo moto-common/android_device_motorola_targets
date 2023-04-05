@@ -15,6 +15,9 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
+
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
@@ -26,3 +29,6 @@ PLATFORM_PROVIDES_LIBHIDL := true
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_DEVICE := $(DEVICE)
+PRODUCT_NAME := lineage_$(DEVICE)

@@ -15,6 +15,9 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
+
 #
 # All components inherited here go to system image
 #
@@ -47,3 +50,6 @@ ARROW_GAPPS := true
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_DEVICE := $(DEVICE)
+PRODUCT_NAME := arrow_$(DEVICE)

@@ -15,6 +15,9 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
+
 # All components inherited here go to system image
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
@@ -38,3 +41,6 @@ PRODUCT_PACKAGES += libtensorflowlite_jni
 
 # Hentai Official Rel Extras
 $(call inherit-product-if-exists, vendor/hentai-priv/hentai-priv.mk)
+
+PRODUCT_DEVICE := $(DEVICE)
+PRODUCT_NAME := hentai_$(DEVICE)
