@@ -15,10 +15,6 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
 # Inherit some common AICP stuff.
 $(call inherit-product, vendor/aicp/config/common_full_phone.mk)
 
@@ -31,3 +27,5 @@ $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_NAME := aicp_$(DEVICE)
