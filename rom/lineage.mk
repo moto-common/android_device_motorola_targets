@@ -26,3 +26,5 @@ PLATFORM_PROVIDES_LIBHIDL := true
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
+
+PRODUCT_NAME := lineage_$(DEVICE)
