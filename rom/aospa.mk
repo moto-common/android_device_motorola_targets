@@ -15,9 +15,6 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
 # Inherit from the AOSPA configuration.
 $(call inherit-product, vendor/aospa/target/product/aospa-target.mk)
 
@@ -30,3 +27,5 @@ ROM_INCLUDES_QCOM_COMMON := true
 # Bluetooth
 PRODUCT_SOONG_NAMESPACES += \
     packages/modules/Bluetooth/android/app
+
+PRODUCT_NAME := aospa_$(DEVICE)
