@@ -55,6 +55,8 @@ new_root.append(remote)
 # Find duplicates and replacements in the first manifest
 duplicates = {}
 replacements = {}
+# Track removals for deduplication
+removals = []
 for project in root1.findall('project'):
     path = project.get('path')
     name = project.get('name')
@@ -85,7 +87,9 @@ for project in root1.findall('project'):
             if keyword in path:
                 remove = ET.Element('remove-project')
                 remove.set('name', name)
-                new_root.append(remove)
+                if name not in removals:
+                    new_root.append(remove)
+                    removals.append(name)
                 break
 
 # Create a new manifest with remove-project and project elements
@@ -96,7 +100,9 @@ for project in root1.findall('project'):
     if path in duplicates and name in duplicates[path]:
         remove = ET.Element('remove-project')
         remove.set('name', name)
-        new_root.append(remove)
+        if name not in removals:
+            new_root.append(remove)
+            removals.append(name)
     elif path in replacements:
         new_project = ET.Element('project')
         new_project.set('path', path)
