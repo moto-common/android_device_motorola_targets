@@ -1,6 +1,21 @@
 import argparse
 import xml.etree.ElementTree as ET
 
+def indent(elem, level=0):
+  i = "\n" + level*"  "
+  if len(elem):
+    if not elem.text or not elem.text.strip():
+      elem.text = i + "  "
+    if not elem.tail or not elem.tail.strip():
+      elem.tail = i
+    for elem in elem:
+      indent(elem, level+1)
+    if not elem.tail or not elem.tail.strip():
+      elem.tail = i
+  else:
+    if level and (not elem.tail or not elem.tail.strip()):
+      elem.tail = i
+
 # parse arguments
 parser = argparse.ArgumentParser(description='Remove duplicates from a repo manifest file')
 parser.add_argument('input_manifest_files', metavar='default.xml', help='Path to input ROM manifest XML files', nargs='+')
@@ -117,6 +132,6 @@ for project in root1.findall('project'):
 for project in projects:
     new_root.append(project)
 
-ET.indent(new_root, '  ')
+indent(new_root)
 # Write the new manifest to a file
 ET.ElementTree(new_root).write(args.output, xml_declaration=True, encoding='UTF-8', method='xml', short_empty_elements=True)
