@@ -114,7 +114,7 @@ for project in root1.findall('project'):
         projects.append(new_project)
 
 # Add the remove-project elements at the end of the new manifest
-for project in sorted(root1.findall('remove-project') + projects, key=lambda elem: elem.tag): 
+for project in projects:
     new_root.append(project)
 
 ET.indent(new_root, '  ')
