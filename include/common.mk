@@ -14,3 +14,6 @@
 
 # Device
 DEVICE := $(PRODUCT_DEVICE)
+
+# Utils
+include device/motorola/targets/include/utils.mk
