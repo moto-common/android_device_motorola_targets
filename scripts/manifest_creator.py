@@ -6,10 +6,8 @@ parser = argparse.ArgumentParser(description='Remove duplicates from a repo mani
 parser.add_argument('input_manifest_files', metavar='default.xml', help='Path to input ROM manifest XML files', nargs='+')
 parser.add_argument('moto_common_xml', metavar='moto_common.xml', help='Path to Moto-Common manifest XML')
 parser.add_argument('output', metavar='output', help='Path to output manifest file')
-parser.add_argument('--removal-keywords', metavar='keyword', nargs='+', default=["st-hal"],
-                    help='Keywords to match for removal of duplicates')
-parser.add_argument('--replacement-keywords', metavar='keyword', nargs='+', default=["qcom-caf/common"],
-                    help='Keywords to match for replacement of duplicates')
+parser.add_argument('--removal-keywords', metavar='keyword', nargs='+', default=[],
+                    help='Additional keywords to match for removal of duplicates')
 parser.add_argument('--remote-name', metavar='name', default='moto-common',
                     help='Name of the remote to be added at the beginning of the output manifest')
 parser.add_argument('--remote-url', metavar='url', default='https://github.com/moto-common/',
@@ -43,7 +41,13 @@ replacements_keywords = {'qcom-caf/common': {
     "name": "platform_hardware_qcom-caf_common",
     "revision": "master"
 }}
-removals_keywords = ['st-hal', 'data-ipa-cfg-mgr'] + list(replacements_keywords.keys())
+removals_keywords = [
+    'st-hal',
+    'data-ipa-cfg-mgr',
+    'qcom-caf/thermal',
+    'opensource/thermal',
+    'opensource/audio-hal'
+] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest
 new_root = ET.Element('manifest')
