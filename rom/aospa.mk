@@ -24,10 +24,6 @@ $(call inherit-product, vendor/aospa/target/product/aospa-target.mk)
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 
-# NoNearbySharingOverlay
-PRODUCT_PACKAGES += \
-    NoNearbySharingOverlay
-
 # Avoid double inclusion
 ROM_INCLUDES_QCOM_COMMON := true
 

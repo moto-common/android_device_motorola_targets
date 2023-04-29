@@ -12,12 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Device
-DEVICE := $(PRODUCT_DEVICE)
+# Common
+include device/motorola/targets/include/common.mk
 
-# NoNearbySharingOverlay
-PRODUCT_PACKAGES += \
-    NoNearbySharingOverlay
+# Inherit some common lmodroid stuff.
+$(call inherit-product, vendor/lmodroid/config/common_full_phone.mk)
 
-# Utils
-include device/motorola/targets/include/utils.mk
+# Face Unlock isn't ready yet
+TARGET_FACE_UNLOCK_OPTOUT := true
+
+# GMS
+GMS_MAKEFILE := gms_64bit_only.mk
+WITH_GMS_FEATURE := true
+WITH_GMS := true
+
+# Kernel
+$(call inherit-product, device/motorola/targets/include/kernel/source.mk)
+
+# Libhidl
+PLATFORM_PROVIDES_LIBHIDL := true
+
+# Required Scripts
+$(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
