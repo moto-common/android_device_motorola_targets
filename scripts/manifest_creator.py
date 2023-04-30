@@ -58,7 +58,13 @@ replacements_keywords = {'qcom-caf/common': {
     "name": "platform_hardware_qcom-caf_common",
     "revision": "master"
 }}
-removals_keywords = ['st-hal', 'data-ipa-cfg-mgr'] + list(replacements_keywords.keys())
+removals_keywords = [
+    'st-hal',
+    'data-ipa-cfg-mgr',
+    'qcom-caf/thermal',
+    'opensource/thermal',
+    'opensource/audio-hal'
+] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest
 new_root = ET.Element('manifest')
