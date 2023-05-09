@@ -63,7 +63,8 @@ removals_keywords = [
     'data-ipa-cfg-mgr',
     'qcom-caf/thermal',
     'opensource/thermal',
-    'opensource/audio-hal'
+    'opensource/audio-hal',
+    'timekeep'
 ] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest
