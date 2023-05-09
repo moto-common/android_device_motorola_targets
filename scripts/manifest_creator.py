@@ -64,6 +64,7 @@ removals_keywords = [
     'qcom-caf/thermal',
     'opensource/thermal',
     'opensource/audio-hal'
+    'timekeep'
 ] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest
