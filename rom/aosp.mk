@@ -15,9 +15,6 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
-
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 
