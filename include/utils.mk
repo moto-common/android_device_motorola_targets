@@ -20,3 +20,21 @@ define copy-files-recursive
    $(eval PRODUCT_COPY_FILES += $(file):$(2)/$(patsubst $(1)/%,%,$(dir $(file)))$(notdir $(file))) \
  )
 endef
+
+# $(call is-kernel-greater-than-or-equal-to,kernel-version)
+# Checks if the target kernel version is greater than or equal to
+# the specified version.
+#
+# How it works:
+#  1. $(shell expr $(TARGET_KERNEL_VERSION) \>= $(1)) compares
+#     the target kernel version with the specified version using
+#     the "expr" command.
+#  2. The result of the comparison is passed to the "filter"
+#     function, which returns "1" if the comparison is true and
+#     "0" otherwise.
+#  3. $(if $(filter 1,...),true,false) returns "true" if the
+#     comparison is true and "false" otherwise.
+
+define is-kernel-greater-than-or-equal-to
+$(if $(filter 1,$(shell expr $(TARGET_KERNEL_VERSION) \>= $(1))),true,false)
+endef
