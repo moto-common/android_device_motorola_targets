@@ -20,4 +20,10 @@ else
     TARGET_KERNEL_LLVM_BINUTILS := false
 endif
 TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
-TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
+ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
+  TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
+else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
+  TARGET_KERNEL_SOURCE := kernel/motorola/$(TARGET_BOARD_PLATFORM)
+else
+  $(error Target's hardware is not supported...)
+endif
