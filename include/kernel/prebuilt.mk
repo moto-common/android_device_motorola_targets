@@ -24,6 +24,8 @@ PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
 
 # Modules
+BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
+
 ifneq ($(BOOT_KERNEL_MODULES),)
   BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
       $(foreach module,$(BOOT_KERNEL_MODULES),$(TARGET_DEVICE_DIR)-kernel/modules/$(module))
