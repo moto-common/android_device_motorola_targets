@@ -1,4 +1,4 @@
-# Copyright 2014 The Android Open Source Project
+# Copyright 2023 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,20 @@
 # Common
 include device/motorola/targets/include/common.mk
 
+# Required Components For Arrow To Boot
+$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
+
 # Inherit some common ArrowOS stuff.
 $(call inherit-product, vendor/arrow/config/common.mk)
 
+ARROW_GAPPS := true
+
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
-
-ARROW_GAPPS := true
 
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
