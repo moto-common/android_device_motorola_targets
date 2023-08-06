@@ -86,15 +86,18 @@ endef
 # the specified version.
 #
 # How it works:
-#  1. $(shell expr $(TARGET_KERNEL_VERSION) \>= $(1)) compares
-#     the target kernel version with the specified version using
-#     the "expr" command.
-#  2. The result of the comparison is passed to the "filter"
-#     function, which returns "1" if the comparison is true and
-#     "0" otherwise.
-#  3. $(if $(filter 1,...),true,false) returns "true" if the
-#     comparison is true and "false" otherwise.
-
+#  1. We compare the first word (major version) of the target kernel version
+#     with the first word of the specified version.
+#  2. If the first words are equal, we proceed to compare the second word
+#     (minor version) of the target kernel version with the second word
+#     of the specified version.
+#  3. If both comparisons are true, it returns "true"; otherwise, it returns "false."
 define is-kernel-greater-than-or-equal-to
-$(if $(filter 1,$(shell expr $(TARGET_KERNEL_VERSION) \>= $(1))),true,false)
+$(strip $(if $(filter $(firstword ,$(subst ., ,$(TARGET_KERNEL_VERSION))),$(firstword ,$(subst ., ,$(1)))),\
+    $(if $(filter true,$(call math_gt_or_eq,$(word 2,$(subst ., ,$(TARGET_KERNEL_VERSION))),$(word 2,$(subst ., ,$(1))))),\
+        true,\
+        false),\
+    $(if $(filter true,$(call math_gt_or_eq,$(firstword $(subst ., ,$(TARGET_KERNEL_VERSION))),$(firstword $(subst ., ,$(1))))),\
+        true,\
+        false)))
 endef
