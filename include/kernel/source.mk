@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(call is-kernel-greater-than-or-equal-to, 5.4),true)
+ifeq ($(call is-kernel-greater-than-or-equal-to,5.4),true)
     TARGET_KERNEL_CLANG_VERSION := r450784d
     TARGET_KERNEL_LLVM_BINUTILS := true
 else
