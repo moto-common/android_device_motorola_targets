@@ -38,6 +38,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 PRODUCT_PACKAGES += \
     NoNearbySharingOverlay
 
+# ROM Name
+ROM_NAME := $(firstword $(subst _, ,$(TARGET_PRODUCT)))
+
 # Utils
 include device/motorola/targets/include/utils.mk
 
