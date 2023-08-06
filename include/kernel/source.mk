@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(call is-kernel-greater-than-or-equal-to, 5.4),true)
+include device/motorola/targets/include/kernel/common.mk
+
+ifeq ($(call is-kernel-greater-than-or-equal-to,5.4),true)
     TARGET_KERNEL_CLANG_VERSION := r450784d
     TARGET_KERNEL_LLVM_BINUTILS := true
 else
@@ -25,5 +27,5 @@ ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
 else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
   TARGET_KERNEL_SOURCE := kernel/motorola/$(TARGET_BOARD_PLATFORM)
 else
-  $(error Target's hardware is not supported...)
+  $(warning Target's hardware is not supported...)
 endif
