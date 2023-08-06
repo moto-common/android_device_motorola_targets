@@ -86,15 +86,14 @@ endef
 # the specified version.
 #
 # How it works:
-#  1. $(shell expr $(TARGET_KERNEL_VERSION) \>= $(1)) compares
-#     the target kernel version with the specified version using
-#     the "expr" command.
-#  2. The result of the comparison is passed to the "filter"
-#     function, which returns "1" if the comparison is true and
-#     "0" otherwise.
-#  3. $(if $(filter 1,...),true,false) returns "true" if the
-#     comparison is true and "false" otherwise.
-
+#  1. We use the "sort" function to compare the target kernel version
+#     with the specified version. The "sort" function sorts the list
+#     of versions and returns the greatest version, which in this case
+#     will be the target kernel version if it is greater than or equal
+#     to the specified version.
+#  2. We then compare the greatest version with the specified version
+#     using the "ifeq" function. If the greatest version is equal to
+#     the specified version or greater, it returns "true," otherwise "false."
 define is-kernel-greater-than-or-equal-to
-$(if $(filter 1,$(shell expr $(TARGET_KERNEL_VERSION) \>= $(1))),true,false)
+$(if $(filter-out $(sort $(TARGET_KERNEL_VERSION)),$(sort $(1))),true,false)
 endef
