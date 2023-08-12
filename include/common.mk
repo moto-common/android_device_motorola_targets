@@ -27,6 +27,9 @@ PRODUCT_BRAND := motorola
 # Device
 PRODUCT_DEVICE := $(DEVICE)
 
+# GMS Client ID
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
+
 # Manufacturer
 PRODUCT_MANUFACTURER := motorola
 

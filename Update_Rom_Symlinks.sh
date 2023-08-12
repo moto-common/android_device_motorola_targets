@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Updating Rom Symlinks..."
+echo ""
+
 ROM_DIR="rom"
 DEVICE_DIR="devices"
 
@@ -13,3 +16,9 @@ for device in $DEVICE_DIR/*; do
     ln -sf "../../$file" "$device/$(basename ${file%.*})_$(basename $device).mk"
   done
 done
+
+echo "Rom Symlinks Updated & Rom Added  =)"
+echo ""
+echo ""
+echo "PRESS ENTER TO EXIT"
+read

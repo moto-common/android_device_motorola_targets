@@ -15,22 +15,30 @@
 # Common
 include device/motorola/targets/include/common.mk
 
-# Required Components For Arrow To Boot
-$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
+# Inherit some common CherishOS Stuff.
+$(call inherit-product, vendor/cherish/config/common.mk)
 
-# Inherit some common ArrowOS stuff.
-$(call inherit-product, vendor/arrow/config/common.mk)
+# CherishOS Stuff with GApps
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+TARGET_BUILD_GRAPHENEOS_CAMERA := false
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_ENABLE_BLUR := false
+WITH_GMS := true
 
-ARROW_GAPPS := true
+# FOD animations
+EXTRA_UDFPS_ANIMATIONS := false
+
+# Maintainer Stuff
+CHERISH_BUILD_TYPE := UNOFFICIAL
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.cherish.maintainer=
 
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)
 
-# Required Scripts
+# VARIABLE - SePolicy Camera Script
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
 
-PRODUCT_NAME := arrow_$(DEVICE)
+PRODUCT_NAME := cherish_$(DEVICE)
