@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ifeq ($(call is-kernel-greater-than-or-equal-to, 5.4),true)
-    TARGET_KERNEL_CLANG_VERSION := r450784d
+    TARGET_KERNEL_CLANG_VERSION := r450784e
     TARGET_KERNEL_LLVM_BINUTILS := true
 else
     TARGET_KERNEL_CLANG_VERSION := r383902
