@@ -83,7 +83,7 @@ removals = []
 for project in root1.findall('project'):
     path = project.get('path')
     name = project.get('name')
-    linkfile_elems = project.findall('linkfile')
+    linkfile_elems = [x for x in project.findall('linkfile') if not "sepolicy" in x.get("src")]
     if path in paths2:
         if path not in duplicates:
             duplicates[path] = [name]
