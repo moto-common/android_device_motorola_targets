@@ -45,4 +45,4 @@ ROM_NAME := $(firstword $(subst _, ,$(TARGET_PRODUCT)))
 include device/motorola/targets/include/utils.mk
 
 # Inherit device makefile
-$(call inherit-product, device/motorola/$(DEVICE)/device.mk)
+include device/motorola/$(DEVICE)/device.mk
