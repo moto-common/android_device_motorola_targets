@@ -93,11 +93,44 @@ endef
 #     of the specified version.
 #  3. If both comparisons are true, it returns "true"; otherwise, it returns "false."
 define is-kernel-greater-than-or-equal-to
-$(strip $(if $(filter $(firstword ,$(subst ., ,$(TARGET_KERNEL_VERSION))),$(firstword ,$(subst ., ,$(1)))),\
-    $(if $(filter true,$(call math_gt_or_eq,$(word 2,$(subst ., ,$(TARGET_KERNEL_VERSION))),$(word 2,$(subst ., ,$(1))))),\
-        true,\
-        false),\
-    $(if $(filter true,$(call math_gt_or_eq,$(firstword $(subst ., ,$(TARGET_KERNEL_VERSION))),$(firstword $(subst ., ,$(1))))),\
-        true,\
-        false)))
+$(strip \
+$(eval board_major:=$(firstword $(subst ., ,$(TARGET_KERNEL_VERSION)))) \
+$(eval board_minor:=$(word 2,$(subst ., ,$(TARGET_KERNEL_VERSION)))) \
+$(eval target_major:=$(firstword $(subst ., ,$(1)))) \
+$(eval target_minor:=$(word 2,$(subst ., ,$(1)))) \
+$(if $(filter $(board_major),$(target_major)),\
+    $(if $(filter true,$(call math_gt_or_eq,$(board_minor),$(target_minor))),\
+        true),\
+    $(if $(filter true,$(call math_gt_or_eq,$(board_major),$(target_major))),\
+        true))
+)
+endef
+
+# $(call is-kernel-less-than-or-equal-to,kernel-version)
+# Checks if the target kernel version is less than or equal to
+# the specified version.
+#
+# How it works:
+#  1. We compare the first word (major version) of the target kernel version
+#     with the first word of the specified version.
+#  2. If the first words are equal, we proceed to compare the second word
+#     (minor version) of the target kernel version with the second word
+#     of the specified version.
+#  3. If both comparisons are true, it returns "true"; otherwise, it returns "false."
+define is-kernel-less-than-or-equal-to
+$(strip \
+$(eval board_major:=$(firstword $(subst ., ,$(TARGET_KERNEL_VERSION)))) \
+$(eval board_minor:=$(word 2,$(subst ., ,$(TARGET_KERNEL_VERSION)))) \
+$(eval target_major:=$(firstword $(subst ., ,$(1)))) \
+$(eval target_minor:=$(word 2,$(subst ., ,$(1)))) \
+$(if $(filter $(board_major),$(target_major)),\
+    $(if $(filter true,$(call math_lt_or_eq,$(board_minor),$(target_minor))),\
+        true),\
+    $(if $(filter true,$(call math_lt_or_eq,$(board_major),$(target_major))),\
+        true))
+)
+endef
+
+define is-kernel-version-in-range
+$(and $(call is-kernel-greater-than-or-equal-to,$(1)), $(call is-kernel-less-than-or-equal-to,$(2)))
 endef
