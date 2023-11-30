@@ -21,11 +21,17 @@ else
     TARGET_KERNEL_CLANG_VERSION := r383902
     TARGET_KERNEL_LLVM_BINUTILS := false
 endif
+TARGET_KERNEL_NO_GCC := false
 TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
 else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
+  BOARD_PREBUILT_DTBIMAGE_DIR ?= device/motorola/$(PRODUCT_DEVICE)-kernel/dtbs
   TARGET_KERNEL_SOURCE := kernel/motorola/$(TARGET_BOARD_PLATFORM)
+  ifeq ($(call has-partition,dtbo),true)
+    # Mtk moto devices must use prebuilt dtbo image
+    BOARD_PREBUILT_DTBOIMAGE ?= device/motorola/$(PRODUCT_DEVICE)-kernel/dtbo.img
+  endif
 else
   $(warning Target's hardware is not supported...)
 endif
