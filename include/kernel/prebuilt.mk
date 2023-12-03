@@ -44,6 +44,9 @@ ifneq ($(BOOT_KERNEL_MODULES),)
       $(foreach module,$(BOOT_KERNEL_MODULES),device/motorola/$(DEVICE)-kernel/modules/$(module))
 endif
 
+# Kernel Headers
+PRODUCT_VENDOR_KERNEL_HEADERS := $(PLATFORM_COMMON_PATH)-kernel/kernel-headers
+
 # Force prebuilt kernel, user inclded this makefile for a reason
 TARGET_FORCE_PREBUILT_KERNEL := true
 # Declare kernel config and source for headers
