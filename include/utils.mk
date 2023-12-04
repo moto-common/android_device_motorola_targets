@@ -131,6 +131,42 @@ $(if $(filter $(board_major),$(target_major)),\
 )
 endef
 
+# $(call is-kernel-less-than-or-equal-to,kernel-version)
+# Checks if the target kernel version in range if specified
+# versions.
 define is-kernel-version-in-range
 $(and $(call is-kernel-greater-than-or-equal-to,$(1)), $(call is-kernel-less-than-or-equal-to,$(2)))
+endef
+
+# $(call upper,string)
+# Converts strings to uppercase version
+define upper
+$(shell echo $(1) | tr '[:lower:]' '[:upper:]')
+endef
+
+# $(call add-device-sku,sku,characteristic)
+# Creates ODM manifest sku for a specified sku
+# How it works:
+#  1. Evaluates if the device has the specified characteristic using
+#     device-has-characteristic.
+#  2. If the characteristic is present, adds the odm manifest sku
+#     and includes the corresponding XML file in the manifest.
+#
+# Example:
+#  $(call add-device-sku,n,nfc)
+#  This call will add 'n' to ODM_MANIFEST_SKUS and include
+#  'manifest_n.xml' in ODM_MANIFEST_N_FILES.
+define add-device-sku
+$(eval characteristic:=$(2))
+$(eval sku:=$(1))
+$(eval sku_manifest:=$(COMMON_PATH)/sku/$(sku)/manifest.xml)
+$(eval sku_unavail_permissions:=$(wildcard $(COMMON_PATH)/sku/$(sku)/unavail.*.xml))
+$(eval sku_permissions:=$(filter-out $(sku_manifest) $(sku_unavail_permissions),$(wildcard $(COMMON_PATH)/sku/$(sku)/*.xml)))
+$(if $(filter true,$(call device-has-characteristic,nfc)), \
+  $(eval ODM_MANIFEST_SKUS += $(sku))
+  $(eval ODM_MANIFEST_$(call upper,$(sku))_FILES += $(sku_manifest))
+  $(foreach perm,$(sku_unavail_permissions),$(eval PRODUCT_COPY_FILES += $(perm):$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_$(sku)/$(lastword $(subst /, ,$(perm)))))
+  $(foreach perm,$(sku_permissions),$(eval PRODUCT_COPY_FILES += $(perm):$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_$(sku)/$(lastword $(subst /, ,$(perm)))))
+)
+$(if $(wildcard $(sku_manifest)),,$(warning Created ODM sku with non-existent manifest file!))
 endef
