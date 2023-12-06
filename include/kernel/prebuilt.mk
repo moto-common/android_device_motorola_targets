@@ -16,7 +16,7 @@ include device/motorola/targets/include/kernel/common.mk
 
 # Handle copying the kernel ourselves
 TARGET_NO_KERNEL_OVERRIDE := true
-TARGET_PREBUILT_KERNEL := $(TARGET_DEVICE_DIR)-kernel/$(TARGET_KERNEL_IMAGE_NAME)
+TARGET_PREBUILT_KERNEL ?= $(TARGET_DEVICE_DIR)-kernel/$(TARGET_KERNEL_IMAGE_NAME)
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
 
