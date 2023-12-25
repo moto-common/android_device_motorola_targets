@@ -65,7 +65,8 @@ removals_keywords = [
     'opensource/thermal',
     'opensource/audio-hal',
     'timekeep',
-    'fm-commonsys'
+    'fm-commonsys',
+    'core-utils-vendor'
 ] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest
@@ -83,7 +84,7 @@ removals = []
 for project in root1.findall('project'):
     path = project.get('path')
     name = project.get('name')
-    linkfile_elems = project.findall('linkfile')
+    linkfile_elems = [x for x in project.findall('linkfile') if not "sepolicy" in x.get("src") or not "sepolicy" in x.get("dest")]
     if path in paths2:
         if path not in duplicates:
             duplicates[path] = [name]
