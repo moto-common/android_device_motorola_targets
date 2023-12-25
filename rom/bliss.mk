@@ -22,6 +22,10 @@ include device/motorola/targets/include/common.mk
 #$(call inherit-product-if-exists, vendor/foss/foss.mk)
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
+# Gapps
+#TARGET_ESSENTIAL_GAPPS := true
+TARGET_STOCK_GAPPS := true
+
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/bliss/config/common_full_phone.mk)
 
