@@ -73,13 +73,24 @@ endef
 # Example output: fstab_dynamic.qcom
 
 define select-fstab
-$(strip $(if $(filter true,$(TARGET_USES_DYNAMIC_PARTITIONS)),\
- $(if $(filter true,$(call has-partition,system_ext)),\
-  $(FSTAB_DYNAMIC_SYSTEM_EXT),\
-  $(FSTAB_DYNAMIC)),\
- $(FSTAB_LEGACY))$(if $(filter true,$(call device-has-characteristic,ufs)),_ufs).$(FSTAB_SUFFIX)\
-)
+$(strip \
+$(eval is_dynamic:=$(TARGET_USES_DYNAMIC_PARTITIONS)) \
+$(eval has_system_ext:=$(call has-partition,system_ext)) \
+$(eval fstab_name:=fstab) \
+$(eval is_ufs:=$(call device-has-characteristic,ufs)) \
+$(eval is_qcom:=$(PRODUCT_USES_QCOM_HARDWARE)) \
+$(if $(filter true,$(is_dynamic)), \
+    $(eval fstab_name:=$(fstab_name)_dynamic)) \
+$(if $(filter true,$(has_system_ext)), \
+    $(eval fstab_name:=$(fstab_name)_system_ext)) \
+$(if $(filter true,$(is_ufs)), \
+    $(eval fstab_name:=$(fstab_name)_ufs)) \
+$(if $(filter true,$(is_qcom)), \
+    $(eval fstab_name:=$(fstab_name).qcom), \
+    $(eval fstab_name:=$(fstab_name).$(TARGET_BOARD_PLATFORM))) \
+$(fstab_name))
 endef
+
 
 # $(call is-kernel-greater-than-or-equal-to,kernel-version)
 # Checks if the target kernel version is greater than or equal to
