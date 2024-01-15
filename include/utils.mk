@@ -162,7 +162,7 @@ $(eval sku:=$(1))
 $(eval sku_manifest:=$(COMMON_PATH)/sku/$(sku)/manifest.xml)
 $(eval sku_unavail_permissions:=$(wildcard $(COMMON_PATH)/sku/$(sku)/unavail.*.xml))
 $(eval sku_permissions:=$(filter-out $(sku_manifest) $(sku_unavail_permissions),$(wildcard $(COMMON_PATH)/sku/$(sku)/*.xml)))
-$(if $(filter true,$(call device-has-characteristic,nfc)), \
+$(if $(filter true,$(call device-has-characteristic,$(characteristic))), \
   $(eval ODM_MANIFEST_SKUS += $(sku))
   $(eval ODM_MANIFEST_$(call upper,$(sku))_FILES += $(sku_manifest))
   $(foreach perm,$(sku_unavail_permissions),$(eval PRODUCT_COPY_FILES += $(perm):$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_$(sku)/$(lastword $(subst /, ,$(perm)))))
