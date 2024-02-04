@@ -25,7 +25,6 @@ $(call inherit-product, device/motorola/targets/include/kernel/prebuilt.mk)
 ROM_INCLUDES_QCOM_COMMON := true
 
 # Bluetooth
-PRODUCT_SOONG_NAMESPACES += \
-    packages/modules/Bluetooth/android/app
-
 PRODUCT_NAME := aospa_$(DEVICE)
+BUILD_BROKEN_DUP_RULES := true
+
