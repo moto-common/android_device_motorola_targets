@@ -1,4 +1,4 @@
-import argparse
+import argparse, pathlib
 import xml.etree.ElementTree as ET
 
 def indent(elem, level=0):
@@ -19,7 +19,7 @@ def indent(elem, level=0):
 # parse arguments
 parser = argparse.ArgumentParser(description='Remove duplicates from a repo manifest file')
 parser.add_argument('input_manifest_files', metavar='default.xml', help='Path to input ROM manifest XML files', nargs='+')
-parser.add_argument('moto_common_xml', metavar='moto_common.xml', help='Path to Moto-Common manifest XML')
+parser.add_argument('moto_common_xml_dir', metavar='moto_common_xml_dir', help='Path to Moto-Common manifest XML dir')
 parser.add_argument('output', metavar='output', help='Path to output manifest file')
 parser.add_argument('--removal-keywords', metavar='keyword', nargs='+', default=["st-hal"],
                     help='Keywords to match for removal of duplicates')
@@ -46,9 +46,18 @@ for manifest_file in args.input_manifest_files:
 tree1 = ET.ElementTree(root)
 root1 = tree1.getroot()
 
-# Parse Moto-Common XML file
-tree2 = ET.parse(args.moto_common_xml)
-root2 = tree2.getroot()
+# Parse Moto-Common XML files
+# tree2 = ET.parse(args.moto_common_xml)
+# root2 = tree2.getroot()
+root2 = ET.Element('manifest')
+for file in pathlib.Path(args.moto_common_xml_dir).rglob('*.xml'):
+    try:
+        tree = ET.parse(file)
+        manifest_root = tree.getroot()
+        for child in manifest_root:
+            root2.append(child)
+    except ET.ParseError:
+        print(f"Failed to parse {file}, skipped!")
 
 # Get the list of paths in the second manifest
 paths2 = [project.get('path') for project in root2.findall('project')]
