@@ -191,3 +191,10 @@ $(if $(filter true,$(call device-has-characteristic,$(characteristic))), \
     $(call add-device-sku-inner,$(1))
 )
 endef
+
+# Define math_lt_or_eq, it comes from aosp master.
+ifndef math_lt_or_eq
+define math_lt_or_eq
+$(if $(call math_gt_or_eq,$(2),$(1)),true)
+endef
+endif
