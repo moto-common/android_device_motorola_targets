@@ -14,14 +14,16 @@
 
 include device/motorola/targets/include/kernel/common.mk
 
-ifeq ($(call is-kernel-greater-than-or-equal-to,5.4),true)
-    TARGET_KERNEL_CLANG_VERSION := r450784e
-    TARGET_KERNEL_LLVM_BINUTILS := true
+ifeq ($(call is-kernel-greater-than-or-equal-to,5.10),true)
+  TARGET_KERNEL_NO_GCC := true
+else ifeq ($(call is-kernel-less-than-or-equal-to,5.4),true)
+  TARGET_KERNEL_CLANG_VERSION := r450784e
+  TARGET_KERNEL_LLVM_BINUTILS := true
 else
-    TARGET_KERNEL_CLANG_VERSION := r383902
-    TARGET_KERNEL_LLVM_BINUTILS := false
+  TARGET_KERNEL_CLANG_VERSION := r383902
+  TARGET_KERNEL_LLVM_BINUTILS := false
 endif
-TARGET_KERNEL_NO_GCC := false
+TARGET_KERNEL_NO_GCC ?= false
 TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
