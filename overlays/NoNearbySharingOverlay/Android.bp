@@ -1,0 +1,7 @@
+runtime_resource_overlay {
+    name: "NoNearbySharingOverlay",
+    sdk_version: "current",
+    resource_dirs: ["res"],
+    platform_apis: true,
+    vendor: true,
+}
