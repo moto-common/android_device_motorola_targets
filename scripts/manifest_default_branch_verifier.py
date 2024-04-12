@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse, sys, os, json
 import xml.etree.ElementTree as ET
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 
 # Define the base directory and overlay information
