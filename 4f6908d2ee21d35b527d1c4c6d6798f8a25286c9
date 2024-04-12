@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "309b601a_7a5515e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2024-04-12T20:01:55Z",
+      "side": 1,
+      "message": "Test: execute both files in their expected directories, works fine (tested on _Ubuntu 22.04.3 LTS_)",
+      "revId": "4f6908d2ee21d35b527d1c4c6d6798f8a25286c9",
+      "serverId": "01f270cf-416b-4de4-afcd-f41a6a777aa0"
+    }
+  ]
+}
