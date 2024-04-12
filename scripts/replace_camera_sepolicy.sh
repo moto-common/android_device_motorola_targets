@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Replace vendor.camera.aux.packagelist and vendor_persist_camera_prop
 # Run as follows, ./device/motorola/targets/scripts/replace_camera_sepolicy.sh
 
