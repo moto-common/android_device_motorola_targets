@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ROM_DIR="rom"
 DEVICE_DIR="devices"
