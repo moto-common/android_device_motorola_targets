@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4813265f_17a78e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000011
+      },
+      "writtenOn": "2024-04-12T19:59:26Z",
+      "side": 1,
+      "message": "Needs further testing (already applied in ximi-common), but should potentially be fine. \nMaybe \u0027platform_apis\u0027, which was added due to \u0027LOCAL_PRIVATE_PLATFORM_APIS\u0027, is not needed at all?",
+      "revId": "5309a01b6f81be8d1ed584a5a2cd76eda0c99e5a",
+      "serverId": "01f270cf-416b-4de4-afcd-f41a6a777aa0"
+    }
+  ]
+}
