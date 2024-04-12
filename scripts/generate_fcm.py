@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
 # Version: 1.3
 

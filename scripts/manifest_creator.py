@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse, pathlib
 import xml.etree.ElementTree as ET
 
