@@ -15,7 +15,7 @@
 include device/motorola/targets/include/kernel/common.mk
 
 ifeq ($(call is-kernel-greater-than-or-equal-to,5.10),true)
-  TARGET_KERNEL_NO_GCC := true
+  TARGET_KERNEL_NO_GCC ?= true
 endif
 
 ifeq ($(call is-kernel-greater-than-or-equal-to,5.4),true)
