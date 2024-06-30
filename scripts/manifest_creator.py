@@ -98,8 +98,9 @@ for project in root1.findall('project'):
     if path in paths2:
         if path not in duplicates:
             duplicates[path] = [name]
-#        else:
-#            duplicates[path].append(name)
+        else:
+            if len(duplicates[path]) < 1:
+                duplicates[path].append(name)
     else:
         for keyword in replacements_keywords:
             if keyword in path:
