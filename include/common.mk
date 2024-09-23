@@ -41,6 +41,9 @@ PRODUCT_PACKAGES += \
 # ROM Name
 ROM_NAME := $(firstword $(subst _, ,$(TARGET_PRODUCT)))
 
+# UFFD
+PRODUCT_ENABLE_UFFD_GC := false
+
 # Utils
 include device/motorola/targets/include/utils.mk
 
