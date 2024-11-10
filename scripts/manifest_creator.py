@@ -32,7 +32,7 @@ parser.add_argument('--remote-url', metavar='url', default='https://github.com/m
                     help='URL of the remote to be added at the beginning of the output manifest')
 args = parser.parse_args()
 
-root = ET.Element('manifest')
+root1 = ET.Element('manifest')
 
 # Parse input XML files
 for manifest_file in args.input_manifest_files:
@@ -40,12 +40,11 @@ for manifest_file in args.input_manifest_files:
         tree = ET.parse(manifest_file)
         manifest_root = tree.getroot()
         for child in manifest_root:
-            root.append(child)
+            root1.append(child)
     except ET.ParseError:
         print(f"Failed to parse {manifest_file}, skipped!")
 
-tree1 = ET.ElementTree(root)
-root1 = tree1.getroot()
+tree1 = ET.ElementTree(root1)
 
 # Parse Moto-Common XML files
 # tree2 = ET.parse(args.moto_common_xml)
@@ -86,14 +85,30 @@ new_root = ET.Element('manifest')
 remote = ET.Element('remote', {'name': 'moto-common', 'fetch': 'https://github.com/moto-common/'})
 new_root.append(remote)
 
+# We need to make sure that the input manifests dont have
+# any remove-project elements for the projects that are
+# being replaced/removed
+for project in root1.findall('remove-project'):
+    name = project.get('name')
+    # Find corresponding project
+    for project in root1.findall('project'):
+        path = project.get('path')
+        if path in replacements_keywords:
+            continue # skip replacements, below code will handle them
+        if project.get('name') == name:
+            # Remove the project from the root
+            root1.remove(project)
+
+# Track removals for deduplication
+removals = []
 # Find duplicates and replacements in the first manifest
 duplicates = {}
 replacements = {}
-# Track removals for deduplication
-removals = []
 for project in root1.findall('project'):
     path = project.get('path')
     name = project.get('name')
+    if not path:
+        continue
     linkfile_elems = [x for x in project.findall('linkfile') if not "sepolicy" in x.get("src") or not "sepolicy" in x.get("dest")]
     if path in paths2:
         if path not in duplicates:
@@ -102,22 +117,21 @@ for project in root1.findall('project'):
             if len(duplicates[path]) < 1:
                 duplicates[path].append(name)
     else:
-        for keyword in replacements_keywords:
-            if keyword in path:
-                if path not in replacements:
+        if any(keyword in path for keyword in replacements_keywords):
+            if path not in replacements:
+                replacements[path] = {
+                    'name': replacements_keywords[keyword]['name'],
+                    'linkfiles': linkfile_elems,
+                    'revision': replacements_keywords[keyword]['revision']
+                }
+            else:
+                # Only replace with the shortest path match
+                if len(path) < len(replacements[path]['path']):
                     replacements[path] = {
                         'name': replacements_keywords[keyword]['name'],
                         'linkfiles': linkfile_elems,
                         'revision': replacements_keywords[keyword]['revision']
                     }
-                else:
-                    # Only replace with the shortest path match
-                    if len(path) < len(replacements[path]['path']):
-                        replacements[path] = {
-                            'name': replacements_keywords[keyword]['name'],
-                            'linkfiles': linkfile_elems,
-                            'revision': replacements_keywords[keyword]['revision']
-                        }
         for keyword in removals_keywords:
             if keyword in path:
                 remove = ET.Element('remove-project')
